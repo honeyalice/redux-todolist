@@ -17,6 +17,7 @@ export default function Todo({ todo }) {
     <div>
       {/* <input type="checkbox" checked={completed} /> */}
       <div>{title}</div>
+      <input type="checkbox" checked={completed} />
 
       <button onClick={() => editById(id)}>Edit</button>
       <button onClick={() => deleteById(id)}>Delete</button>
