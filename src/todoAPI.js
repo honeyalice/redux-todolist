@@ -1,8 +1,8 @@
-const eventAPI = (() => {
-    const Event_API_URL = "http://localhost:3000/events";
-    async function getEvent() {
+const todoAPI = (() => {
+    const Todo_API_URL = "http://localhost:3000/todos";
+    async function getTodo() {
       // GET request to the server
-      const response = await fetch(Event_API_URL);
+      const response = await fetch(Todo_API_URL);
   
       // response.json also returns a promise
       const todos = await response.json();
@@ -10,22 +10,22 @@ const eventAPI = (() => {
       return todos;
     }
     // add a new event 
-    async function postEvent(newEvent) {
-      const response = await fetch(Event_API_URL, {
+    async function postTodo(newTodo) {
+      const response = await fetch(Todo_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newEvent),
+        body: JSON.stringify(newTodo),
       });
   
-      const event = await response.json();
+      const todo = await response.json();
       //   console.log(todo.id);
-      return event;
+      return todo;
     }
   
-    async function deleteEvent(id) {
-      const response = await fetch(`${Event_API_URL}/${id}`, {
+    async function deleteTodo(id) {
+      const response = await fetch(`${Todo_API_URL}/${id}`, {
         method: "DELETE",
       });
   
@@ -33,24 +33,24 @@ const eventAPI = (() => {
       return id;
     }
   
-    async function editEvent(id, newEvent) {
-      const response = await fetch(`${Event_API_URL}/${id}`, {
+    async function updateTodo(id, newTodo) {
+      const response = await fetch(`${Todo_API_URL}/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newEvent),
+        body: JSON.stringify(newTodo),
       });
   
-      const updatedEvent = await response.json();
-      return updatedEvent;
+      const updatedTodo = await response.json();
+      return updatedTodo;
     }
   
     return {
-      getEvent,
-      postEvent,
-      deleteEvent,
-      editEvent,
+      getTodo,
+      postTodo,
+      deleteTodo,
+      updateTodo,
     };
   })();
-  
+  export default todoAPI;

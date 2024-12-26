@@ -1,8 +1,10 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import TodoList from "./components/TodoList";
 import NewTodoForm from "./components/NewTodoForm";
+import { fetchTodos } from "./redux/actions";
+import React, { useEffect } from "react";
+
 
 function App() {
   const count = useSelector((state) => {
@@ -12,6 +14,9 @@ function App() {
   const theme = useSelector((state) => state.theme);
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTodos()); // Fetch todos from server on mount
+  }, [dispatch]);
 
   function toggleTheme() {
     dispatch({ type: "TOGGLE_THEME" });
