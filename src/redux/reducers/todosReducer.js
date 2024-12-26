@@ -16,11 +16,13 @@ export default function todosReducer(state = initState, action) {
     case "DELETE_TODO":
       return state.filter((todo) => todo.id !== payload);
 
-    case "UPDATE_TODO":
-      return;
+    case "SAVE_TODO":
+      return state.map((todo) => todo.id=== action.payload.id? {...todo, title: action.payload.title }: todo
+
+      )
 
     case "COMPLETE_TOGGLE":
-      return;
+      return state.map((todo)=> todo.id===action.payload.id ? !action.payload.completed : todo)
 
     default:
       return state;
